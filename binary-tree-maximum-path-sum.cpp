@@ -13,7 +13,7 @@ class Solution {
 public:
     int maxPathSum(TreeNode *root) {
     	if(!root) return 0;
-    	int maxSum = --65535;//这里的初始值必须设为一个不可能达到的负数 最大值有可能为负的情况
+    	int maxSum = -65535;//这里的初始值必须设为一个不可能达到的负数 最大值有可能为负的情况
     	maxlu(root,maxSum);//递归遍历所有结点的同时时刻更新可能的最大路径值
     	return maxSum;
     }
