@@ -9,23 +9,27 @@
  *  TreeLinkNode(int x) : val(x), left(NULL), right(NULL), next(NULL) {}
  * };
  */
-//方案1 采用队列保存结点的方式 这样的空间复杂度为不是常数级别的 超过限制内存
-class Solution {
-public:
-    void connect(TreeLinkNode *root) {
-       if(!root) return;
-       queue<TreeLinkNode*> q;
-       if(root->left) q.push(root->left);
-       if(root->right) q.push(root->right);
-       while(!q.empty()) {
-       	TreeLinkNode* cur = q.front();
-       	q.pop();
-       	if(!q.empty()||(q.size()%2 == 1)) cur->next = q.front();
-       	if(cur->left) q.push(root->left);
-        if(cur->right) q.push(root->right);
-       }
-   }
-};
+
+
+//队列层次遍历
+//用一个变量tail去存储每层最后的结点 当当前处理的结点等于tail时tail更新。
+void connect(TreeLinkNode *root) {
+        if(root==NULL)
+            return;
+        TreeLinkNode *tail=root;
+        TreeLinkNode *temp;
+        queue<TreeLinkNode*> q;
+        q.push(root);
+        while(!q.empty()){
+            temp=q.front();
+            q.pop();
+            if(temp->left!=NULL) q.push(temp->left);
+            if(temp->right!=NULL) q.push(temp->right);
+            if(temp==tail) tail=q.back();
+            else temp->next=q.front();
+        }
+    }
+
 
 //方案 2 采用已知信息 在遍历的过程中去通过父亲结点的next信息给左右孩子结点以指示
 class Solution {
