@@ -17,6 +17,8 @@ public:
     	return v;
     }
     void travel(TreeNode* p, int sum, vector<vector<int>>& v,vector<int> curv) {
+    	//vector<int> curv 因为每次到达叶子结点的时候都要判断这个当前产生的路径是否
+    	//是我们所需要的 直接以传值得形式去传递 需要就添加 不需要就在递归回退是自动释放
     	if(!p) return;
     	curv.push_back(p->val);
     	int cur = sum - p->val;
