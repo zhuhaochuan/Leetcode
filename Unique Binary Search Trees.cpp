@@ -25,13 +25,14 @@ public int numTrees(int n) {
     res[1] = 1;  
     for(int i=2;i<=n;i++)  
     {  
+    	res[i] = 0; //需要置0 局部变量没有初始化都为随机值
         for(int j=0;j<i;j++)  
         {  
             res[i] += res[j]*res[i-j-1];  
         }  
     }  
     return res[n];  
-}  
+ }  
 
 /*
 这种求数量的题目一般都容易想到用动态规划的解法，这道题的模型正好是卡特兰数的定义。
