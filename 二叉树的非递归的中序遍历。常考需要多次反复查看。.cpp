@@ -30,3 +30,33 @@ public:
     	return v;
     }
 };
+
+
+
+
+class Solution {
+public:
+    vector<int> inorderTraversal(TreeNode *root) {
+        vector<int> result;
+        if(!root)
+            return result;
+        stack<TreeNode*> s;
+        TreeNode *p=root;
+        while(!s.empty() || p!=NULL)//再加一个while在最外层
+        {
+            while(p)
+            {
+                s.push(p);
+                p=p->left;  
+            }
+            if(!s.empty())
+            {
+                p = s.top();
+                s.pop();
+                result.push_back(p->val);
+                p = p->right;
+            }
+        }
+        return result;
+    }
+};
