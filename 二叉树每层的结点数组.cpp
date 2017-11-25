@@ -31,3 +31,30 @@ public:
     return v;
  }
 };
+
+class Solution {
+public:
+    vector<vector<int> > levelOrder(TreeNode *root) {
+        vector<vector<int>>result;
+        queue<TreeNode*>current,next;
+        if(root==nullptr) return result;
+        current.push(root);
+
+        while(!current.empty()){
+            vector<int>level;
+
+            while(!current.empty()){
+                TreeNode* node=current.front();
+                current.pop();
+                level.push_back(node->val);
+                if(node->left!=nullptr) next.push(node->left);
+                if(node->right!=nullptr) next.push(node->right);
+            }
+
+            result.push_back(level);
+            
+            swap(current,next);           
+        }
+        return result;
+    }
+}
