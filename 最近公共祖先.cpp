@@ -99,7 +99,8 @@ public:
         string sb=int2b(b);
         int ans=0;
         for(int i=0;i<sa.length()&&i<sb.length();i++){
-            if(sa[i]==sb[i]) ans=ans<<1+(sa[i]-'0');
+            //if(sa[i]==sb[i]) ans=ans<<1+(sa[i]-'0'); 这样不对。<<作为移位运算符的优先级低于算数运算符。
+            if(sa[i]==sb[i]) ans=(ans<<1)+(sa[i]-'0');
             else break;
         }
         return ans;
