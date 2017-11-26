@@ -69,3 +69,39 @@ public:
         return a;
     }
 };
+
+
+
+//01 10 11
+// 100 101
+// 10 
+
+
+//如果不给你用栈这种底层为deque这种慢的像蜗牛爬一样的容器类怎么办？
+
+//脑子里想想这样的二叉树，然后上面每个编号转化成二进制，于是发现，每个节点A的2个儿子节点的二进制表示，是A的二进制表示后分别追加0和1.
+
+//于是一种不需要任何数据结构的思路是，把10进制数转化成二进制串，从高位到低位，找最长公共前缀，这个前缀转化成十进制int就行了。
+
+class LCA {
+public:
+    string int2b(int x){
+        string ans="";
+        while(x){
+            ans=(char)((x&1)+'0')+ans; //char是根据后面变量的ascii码来转换对应字符串的。
+            //x>>1;这样仅仅得到一个临时的无名变量 并不会改变x本身的值
+            x = x >> 1; 
+        }
+        return ans;
+    }
+    int getLCA(int a, int b) {
+        string sa=int2b(a);
+        string sb=int2b(b);
+        int ans=0;
+        for(int i=0;i<sa.length()&&i<sb.length();i++){
+            if(sa[i]==sb[i]) ans=ans<<1+(sa[i]-'0');
+            else break;
+        }
+        return ans;
+    }
+};
