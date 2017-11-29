@@ -79,17 +79,19 @@ public class Solution {
     }
 }
 
-//算法复杂度为O(N) 
+//算法复杂度为O(N)  空间复杂度较高桶排序？
 class Solution {
 public:
     int arrayPairSum(vector<int>& nums) {
-        int count[20001];
+        int count[20001];// 因为输入的数在[-10000, 10000]这个范围内，为了保证可以映射到count数组内需要保证count的大小
         int sum=0;
         memset(count,0,sizeof(count));//将count全设为0
+
         for (int i=0;i<nums.size();i++){
             count[nums[i]+10000]++;
         }//从count[10000]开始将所有出现的位置全部置1
         bool odd=true;
+
         for (int j=0;j<20001;j++){
             while(count[j]>0){//只有当前位置大于0才表示我们当前这个位置对应的值在数组中出现了（可能出现多次）
                 if (odd){
