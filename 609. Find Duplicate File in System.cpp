@@ -13,6 +13,20 @@
 这道题目的我的想法没问题 采用map比较快 就是对于string的分片和分类讨论的一些问题需要注意
 需要好好的总结string的一系列的操作函数的用法
 substr,find,nops
+string 的 = 操作符可以直接赋值 将一个字符串赋值给另一个字符串 替换原来字符串内的内容 方便实用
+front 访问首字符
+back 访问最后的字符
+data 返回指向字符串首字符的指针
+string 同样拥有迭代器 begin end 。。
+insert 插入字符
+erase 移除字符
+push_back 添加字符到末尾
+pop_back 移除末尾字符
+starts_with 检查string是否始于给定前缀
+ends_with 检查string是否终于给定后缀
+substr 返回子串 [a,b) 注意返回的是左闭右开的子串
+find 在字符串当中查找字符 找到的时候返回第一次找到的位置 找不到则返回string::nops 在string中定义的常量
+static const size_type npos = -1;
  */
  
 
