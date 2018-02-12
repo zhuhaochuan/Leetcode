@@ -30,6 +30,7 @@ public:
     	if(sum<0) return;
     	if(!count1&&!count2&&!sum) {
     		res.push_back(s);
+    		//这里调用的其实是string的拷贝构造函数去构造一个元素添加到vector当中 并不是简单的将s直接添加
     		return;
     	}
     	if(!sum) {
