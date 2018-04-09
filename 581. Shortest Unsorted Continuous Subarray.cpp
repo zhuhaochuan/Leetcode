@@ -1,7 +1,7 @@
 /*
 分析：找到数组当中需要排序之后原始数组也排好序的最短连续长度
 */
-
+//错误答案
 class Solution {
 public:
     int findUnsortedSubarray(vector<int>& nums) {
