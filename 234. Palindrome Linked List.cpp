@@ -12,7 +12,7 @@
  1 4 3 2
  */
 
-
+//单链表的翻转加上找到单链表的中间
 class Solution {
 public:
     bool isPalindrome(ListNode* head) {
