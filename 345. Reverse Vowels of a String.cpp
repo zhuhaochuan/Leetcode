@@ -11,7 +11,7 @@ public:
     string reverseVowels(string s) {
         if(!s.size()) return string();
         int len = s.size();
-        int l = 0,r = len;
+        int l = 0,r = len-1;
         while(l<r) {
         	bool tag1 = isvowel(s[l]),tag2 = isvowel(s[r]);
             if(tag1&&tag2) {

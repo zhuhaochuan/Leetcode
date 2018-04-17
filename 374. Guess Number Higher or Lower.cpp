@@ -12,12 +12,12 @@ public:
         while(tag!=0) {
             //cout << mid <<" " << tag << endl;
         	if(tag==-1) {
-        		r = mid-1;
+        		r = mid-1;//这里必须减1 因为mid已经判断过不是求解的元素 那么闭区间查找就不能放在区间里
         		mid = l + (r-l)/2;
         		tag = guess(mid);
         	}
         	else if(tag==1) {
-        		l = mid+1;
+        		l = mid+1;//这里必须加1
         		mid = l + (r-l)/2;
         		tag = guess(mid);
         	}
