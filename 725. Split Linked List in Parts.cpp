@@ -57,7 +57,7 @@ public:
 
 class Solution {
 public:
-    vector<ListNode*> splitListToParts(ListNode* root, int k) 
+    vector<ListNode*> splitListToParts(ListNode* root, int k)
     {
         vector<ListNode*> ans(k,NULL);
         ListNode * head = root;

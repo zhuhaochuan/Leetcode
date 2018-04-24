@@ -33,7 +33,7 @@ bool isPossible(vector<int>& nums) {
         unordered_map<int,int> cnt, tails;//tails存放以对应元素为结尾的串是否出现
         for(int &i : nums) cnt[i]++;//在map当中记录所有元素出现的次数
         for(int &i : nums){
-            if(!cnt[i]) continue;
+            if(!cnt[i]) continue;//这是和后面的判断配合 如果当前的元素在之前已经被用了那么就跳过
             cnt[i]--;
             if(tails[i-1] > 0){
                 tails[i-1]--;//这里必须清零
