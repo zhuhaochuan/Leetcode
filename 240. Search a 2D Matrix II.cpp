@@ -7,7 +7,7 @@
 //[16,17,18,19,20],
 //[21,22,23,24,25]]
 
-
+//o(n^1.58)
 class Solution {
 public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
@@ -34,7 +34,7 @@ public:
 
 
 
-
+//O(m+n)
 class Solution {
 public:
     bool searchMatrix(vector<vector<int> >& matrix, int target) {
