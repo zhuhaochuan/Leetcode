@@ -1,0 +1,96 @@
+//明显字符代表的整数的大小是远超精度的所以必然不能够使用int去计算
+//将两个数相乘转换为两个部分，第一个部分是相乘第二个部分是相加
+//Input: num1 = "123", num2 = "456"
+//Output: "56088"
+
+
+
+
+//mmp Runtime: 1716 ms
+class Solution {
+public:
+    string multiply(string num1, string num2) {
+        if(num1=="0"||num2=="0") return "0";
+        int n = num1.size(),m = num2.size();
+        string res = "";
+        for(int i=n-1;i>=0;--i) {
+            int a = num1[i] - '0';
+            string s_m = "";
+            int c = n - i - 1;
+            for(int j=m-1;j>=0;--j) {
+                int b = num2[j] - '0';
+                int temp = a * b;
+                string s_temp = to_string(temp);
+                int count = m - j - 1;
+                while(count) {
+                    --count;
+                    s_temp += '0';
+                }
+                s_m = adds(s_m,s_temp);
+            }
+            while(c) {
+                --c;
+                s_m += '0';
+            }
+            res = adds(res,s_m);
+        }
+        return res;
+    }
+
+    string& adds(string& s1,string& s2) {
+        int n = s1.size()-1,m = s2.size()-1,c = 0;
+        if(n<0) return s2;
+        if(m<0) return s1;
+        string* res = new string("");
+        while(n>=0||m>=0||c) {
+            int a = n>=0?s1[n]-'0':0;
+            int b = m>=0?s2[m]-'0':0;
+            int temp = a + b + c;
+            c = temp/10;
+            *res = to_string(temp%10) + *res;
+            --n;
+            --m;
+        }
+        return *res;
+    }
+};
+
+
+
+class Solution {
+public:
+    string multiply(string num1, string num2) {
+        if(num1.empty() || num2.empty()) return "";
+        reverse(num1.begin(), num1.end());
+        reverse(num2.begin(), num2.end());
+
+        string res(num1.size()+num2.size(), '0');
+        for (int i=0; i<num2.size(); i++) {
+            int carry = 0;
+            int val = num2[i] - '0';
+            for (int j = 0; j<num1.size(); j++) {
+                carry += (num1[j] - '0') * val + res[i+j] - '0';
+                res[i+j] = carry % 10 + '0';
+                carry /= 10;//往高位的进位
+            }
+            if(carry>0) res[num1.size()+i] = carry + '0';
+        }
+
+        while(res.back()=='0') res.pop_back();
+        if(res.empty()) return "0";
+        reverse(res.begin(), res.end());
+        /*
+        reverse(res.begin(), res.end());
+        while(res.size()>1 && res[0]=='0') res.erase(res.begin());
+        */
+        return res;
+    }
+    /*- 逆序帮助字符顺序处理；
+      - 计算carry的时候不要忘记把之前的res[i+j]加入；
+      - 最后的carry>0, res[num1.size()+i]=carry+'0'这一步不用担心加上carry后res[num1.size()+i]会溢出，因为这时第一次到num1.size()+i位，
+        之前该位是空的，所以肯定不会溢出；
+      - 最后的leading清零；
+      - 注意字符和数字之间的转换；为什么不能用stoi(num1[j])而只能用(num1[j]-'0')???
+    */
+
+};
