@@ -1,0 +1,91 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };分析：复原一个BST 保持原树的结构不变
+ *
+ */
+class Solution {
+public:
+    void recoverTree(TreeNode* root) {
+        if(!root) return;
+        vector<int> v;
+        stack<TreeNode*> s;
+        TreeNode* cur = root;
+        while(cur||!s.empty()) {
+        	while(cur) {
+        		s.push(cur);
+        		cur = cur->left;
+        	}
+        	cur = s.top();
+        	s.pop();
+        	v.push_back(cur->val);
+        	cur = cur->right;
+        }
+
+        cur = root;
+        int i = 0;
+        sort(v.begin(),v.end());
+        while(cur||!s.empty()) {
+        	while(cur) {
+        		s.push(cur);
+        		cur = cur->left;
+        	}
+        	cur = s.top();
+        	s.pop();
+        	cur->val = v[i];
+        	++i;
+        	cur = cur->right;
+        }
+    }
+};
+
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };只是有两个节点调换了位置
+ */
+class Solution {
+public:
+    void recoverTree(TreeNode* root) {
+        if(!root) return;
+        stack<TreeNode*> s;
+        TreeNode* cur = root,*pre = nullptr;
+        vector<TreeNode*> v;
+        while(cur||!s.empty()) {
+        	if(v.size()==4) break;
+        	while(cur) {
+        		s.push(cur);
+        		cur = cur->left;
+        	}
+        	cur = s.top();
+        	s.pop();
+        	if(!pre)
+        		pre = cur;
+        	else {
+        		if(cur->val<pre->val) {
+        			v.push_back(pre);
+        			v.push_back(cur);
+        		}
+        	}
+            pre = cur;
+        	cur = cur->right;
+        }
+        int temp = v[0]->val;
+        v[0]->val = v.back()->val;
+        v.back()->val = temp;
+    }
+};
+
+
+
+
+
